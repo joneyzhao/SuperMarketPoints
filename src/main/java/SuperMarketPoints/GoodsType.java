@@ -1,5 +1,5 @@
 package SuperMarketPoints;
 
 public enum GoodsType {
-    APPLE, WATERMELON, LAUNDRY, TOWEL
+    APPLE, WATERMELON, LAUNDRY, TOWEL, BASKETBALL, BOOK
 }
