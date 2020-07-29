@@ -45,5 +45,4 @@ public abstract class PointsRule {
         }
         return 0;
     }
-
 }
