@@ -1,35 +1,12 @@
 package SuperMarketPoints;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class CommonMoreThan1000PointsRule extends PointsRule {
-    private List<GoodsType> promotionList = Arrays.asList(GoodsType.APPLE, GoodsType.LAUNDRY, GoodsType.WATERMELON, GoodsType.ICEBOX);
 
     @Override
     public Boolean isInScope(List<PurchasedGoods> purchasedGoodsList) {
         return calculateTotalAmount(purchasedGoodsList) > 1000 && !hasPromotion(purchasedGoodsList);
-    }
-
-    public int calculateTotalAmount(List<PurchasedGoods> purchasedGoodsList){
-        int totalAmount = 0;
-        for(PurchasedGoods purchasedGoodsItem : purchasedGoodsList){
-            totalAmount += purchasedGoodsItem.calculateSubTotalAmount();
-        }
-        return totalAmount;
-    }
-
-    public Boolean hasPromotion(List<PurchasedGoods> purchasedGoodsList){
-        for(PurchasedGoods purchasedGoodsItem : purchasedGoodsList){
-            if(isPromotion(purchasedGoodsItem.goodsType)){
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public Boolean isPromotion(GoodsType goodsType){
-        return promotionList.contains(goodsType);
     }
 
     @Override
