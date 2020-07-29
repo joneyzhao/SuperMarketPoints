@@ -34,9 +34,6 @@ public class CommonMoreThan1000PointsRule extends PointsRule {
 
     @Override
     public int getCurrentRuleTotalPoints(List<PurchasedGoods> purchasedGoodsList) {
-        if(isInScope(purchasedGoodsList)){
-            return 1000 + (calculateTotalAmount(purchasedGoodsList) - 1000) / 20;
-        }
-        return 0;
+        return 1000 + (calculateTotalAmount(purchasedGoodsList) - 1000) / 20;
     }
 }

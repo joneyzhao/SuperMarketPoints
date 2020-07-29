@@ -33,9 +33,6 @@ public class PromotionRuleMoreThan1000 extends PointsRule{
     }
     @Override
     public int getCurrentRuleTotalPoints(List<PurchasedGoods> purchasedGoodsList) {
-        if(isInScope(purchasedGoodsList)){
-            return 2000 + calculateTotalAmount(purchasedGoodsList) -1000;
-        }
-        return 0;
+        return 2000 + calculateTotalAmount(purchasedGoodsList) -1000;
     }
 }

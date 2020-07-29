@@ -55,13 +55,10 @@ public class MixPromotionAndCommonPointsRule extends PointsRule{
 
     @Override
     public int getCurrentRuleTotalPoints(List<PurchasedGoods> purchasedGoodsList) {
-        if(isInScope(purchasedGoodsList)){
-            if (calculateTotalAmount(getPromotionList(purchasedGoodsList)) <= 1000){
-                return calculateTotalAmount(getPromotionList(purchasedGoodsList)) * 2 + (1000 - calculateTotalAmount(getPromotionList(purchasedGoodsList))) + (calculateTotalAmount(purchasedGoodsList) - 1000) / 20;
-            }
-
-            return 2000 + calculateTotalAmount(getPromotionList(purchasedGoodsList)) - 1000 + (calculateTotalAmount(purchasedGoodsList) - calculateTotalAmount(getPromotionList(purchasedGoodsList))) / 20;
+        if (calculateTotalAmount(getPromotionList(purchasedGoodsList)) <= 1000){
+            return calculateTotalAmount(getPromotionList(purchasedGoodsList)) * 2 + (1000 - calculateTotalAmount(getPromotionList(purchasedGoodsList))) + (calculateTotalAmount(purchasedGoodsList) - 1000) / 20;
         }
-        return 0;
+
+        return 2000 + calculateTotalAmount(getPromotionList(purchasedGoodsList)) - 1000 + (calculateTotalAmount(purchasedGoodsList) - calculateTotalAmount(getPromotionList(purchasedGoodsList))) / 20;
     }
 }
