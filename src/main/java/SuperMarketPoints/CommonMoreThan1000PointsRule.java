@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class CommonMoreThan1000PointsRule extends PointsRule {
-    private List<GoodsType> promotionList = Arrays.asList(GoodsType.APPLE, GoodsType.LAUNDRY, GoodsType.WATERMELON);
+    private List<GoodsType> promotionList = Arrays.asList(GoodsType.APPLE, GoodsType.LAUNDRY, GoodsType.WATERMELON, GoodsType.ICEBOX);
 
     @Override
     public Boolean isInScope(List<PurchasedGoods> purchasedGoodsList) {

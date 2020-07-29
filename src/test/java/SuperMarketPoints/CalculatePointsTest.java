@@ -9,21 +9,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class CalculatePointsTest {
-    private List<PointsRule> pointsRulesList = Arrays.asList(new CommonBasicPointsRule(), new CommonMoreThan1000PointsRule(), new PromotionRuleLessThan1000());
-//    @Test
-//    public void should_return_total_points_when_given_common_Goods(){
-//        PurchasedGoods purchasedGoods1 = new PurchasedGoods(10, 2, GoodsType.APPLE);
-//        PurchasedGoods purchasedGoods2 = new PurchasedGoods(10, 3, GoodsType.TOWEL);
-//
-//        List<PurchasedGoods> purchasedGoodsList = new ArrayList();
-//        purchasedGoodsList.add(purchasedGoods1);
-//        purchasedGoodsList.add(purchasedGoods2);
-//
-//        CalculatePoints calculatePoints = new CalculatePoints();
-//        int totalPoints = calculatePoints.calculateTotalPoints(purchasedGoodsList);
-//
-//        assertEquals(totalPoints, 70);
-//    }
+    private List<PointsRule> pointsRulesList = Arrays.asList(new CommonBasicPointsRule(), new CommonMoreThan1000PointsRule(), new PromotionRuleLessThan1000(), new PromotionRuleMoreThan1000());
 
     @Test
     public void should_return_total_points_when_given_common_Goods_less_than_1000(){
@@ -87,5 +73,35 @@ public class CalculatePointsTest {
         int totalPoints = calculatePoints.getTotalPoints(purchasedGoodsList, pointsRulesList);
 
         assertEquals(totalPoints, 1067);
+    }
+
+    @Test
+    public void should_return_total_points_when_given_promotion_ICEBOX_2000(){
+        PurchasedGoods purchasedGoods = new PurchasedGoods(2000, 1, GoodsType.ICEBOX);
+
+        List<PurchasedGoods> purchasedGoodsList = new ArrayList();
+        purchasedGoodsList.add(purchasedGoods);
+
+        CalculatePoints calculatePoints = new CalculatePoints();
+        int totalPoints = calculatePoints.getTotalPoints(purchasedGoodsList, pointsRulesList);
+
+        assertEquals(totalPoints, 3000);
+    }
+
+    @Test
+    public void should_return_total_points_when_given_promotion_more_than_1000(){
+        PurchasedGoods purchasedGoods1 = new PurchasedGoods(800, 1, GoodsType.ICEBOX);
+        PurchasedGoods purchasedGoods2 = new PurchasedGoods(100, 2, GoodsType.LAUNDRY);
+        PurchasedGoods purchasedGoods3 = new PurchasedGoods(10, 10, GoodsType.APPLE);
+
+        List<PurchasedGoods> purchasedGoodsList = new ArrayList();
+        purchasedGoodsList.add(purchasedGoods1);
+        purchasedGoodsList.add(purchasedGoods2);
+        purchasedGoodsList.add(purchasedGoods3);
+
+        CalculatePoints calculatePoints = new CalculatePoints();
+        int totalPoints = calculatePoints.getTotalPoints(purchasedGoodsList, pointsRulesList);
+
+        assertEquals(totalPoints, 2100);
     }
 }
