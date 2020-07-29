@@ -7,10 +7,10 @@ public abstract class PointsRule {
     public abstract int getCurrentRuleTotalPoints(List<PurchasedGoods> purchasedGoodsList);
 
     public int getPoints(List<PurchasedGoods> purchasedGoodsList){
-        if(isInScope(purchasedGoodsList)){
-            return getCurrentRuleTotalPoints(purchasedGoodsList);
-        }
-        return 0;
+//        if(isInScope(purchasedGoodsList)){
+        return getCurrentRuleTotalPoints(purchasedGoodsList);
+//        }
+//        return 0;
     }
 
 }

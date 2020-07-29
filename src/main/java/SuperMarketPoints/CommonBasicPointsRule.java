@@ -35,6 +35,9 @@ public class CommonBasicPointsRule extends PointsRule {
 
     @Override
     public int getCurrentRuleTotalPoints(List<PurchasedGoods> purchasedGoodsList) {
-        return calculateTotalAmount(purchasedGoodsList);
+        if(isInScope(purchasedGoodsList)){
+            return calculateTotalAmount(purchasedGoodsList);
+        }
+        return 0;
     }
 }
