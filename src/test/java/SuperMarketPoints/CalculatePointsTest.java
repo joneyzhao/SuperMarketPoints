@@ -9,7 +9,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class CalculatePointsTest {
-    private List<PointsRule> pointsRulesList = Arrays.asList(new CommonBasicPointsRule(), new CommonMoreThan1000PointsRule(), new PromotionRuleLessThan1000(), new PromotionRuleMoreThan1000());
+    private List<PointsRule> pointsRulesList = Arrays.asList(new CommonBasicPointsRule(), new CommonMoreThan1000PointsRule(), new PromotionRuleLessThan1000(), new PromotionRuleMoreThan1000(), new MixPromotionAndCommonPointsRule());
 
     @Test
     public void should_return_total_points_when_given_common_Goods_less_than_1000(){
@@ -104,4 +104,35 @@ public class CalculatePointsTest {
 
         assertEquals(totalPoints, 2100);
     }
+
+    @Test
+    public void should_return_total_points_when_given_common_and_promotion_more_than_1000(){
+        PurchasedGoods purchasedGoods1 = new PurchasedGoods(800, 1, GoodsType.ICEBOX);
+        PurchasedGoods purchasedGoods2 = new PurchasedGoods(2000, 1, GoodsType.TV);
+
+        List<PurchasedGoods> purchasedGoodsList = new ArrayList();
+        purchasedGoodsList.add(purchasedGoods1);
+        purchasedGoodsList.add(purchasedGoods2);
+
+        CalculatePoints calculatePoints = new CalculatePoints();
+        int totalPoints = calculatePoints.getTotalPoints(purchasedGoodsList, pointsRulesList);
+
+        assertEquals(totalPoints, 1890);
+    }
+
+    @Test
+    public void should_return_total_points_when_given_common_and_promotion_and_promotion_more_than_1000(){
+        PurchasedGoods purchasedGoods1 = new PurchasedGoods(1200, 1, GoodsType.ICEBOX);
+        PurchasedGoods purchasedGoods2 = new PurchasedGoods(1000, 1, GoodsType.TV);
+
+        List<PurchasedGoods> purchasedGoodsList = new ArrayList();
+        purchasedGoodsList.add(purchasedGoods1);
+        purchasedGoodsList.add(purchasedGoods2);
+
+        CalculatePoints calculatePoints = new CalculatePoints();
+        int totalPoints = calculatePoints.getTotalPoints(purchasedGoodsList, pointsRulesList);
+
+        assertEquals(totalPoints, 2250);
+    }
+
 }
